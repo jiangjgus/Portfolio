@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>訂單確認</title>
+	<style>
+    body {background-color: #FFFFE0;}
+    </style>
+</head>
+<body>
+	<div style="text-align: center;">
+	<form method="POST">
+		<h1>訂單確認</h1>
+		<p>飲料名稱：{{ beverage }}</p>
+		<p>冰塊：{{ ice }}</p>
+		<p>甜度：{{ sweet }}</p>
+		<p>口感：{{ mix }}</p>
+		<p>領取方式：{{ receive }}</p>
+	</form>
+	<form action="/end" method="POST">
+		<input type="hidden" name="beverage" value="{{ beverage }}">
+		<input type="hidden" name="ice" value="{{ ice }}">
+		<input type="hidden" name="sweet" value="{{ sweet }}">
+		{% for m in mix %}
+			<input type="hidden" name="mix[]" value="{{ m }}">
+		{% endfor %}
+		<input type="hidden" name="receive" value="{{ receive }}">
+		<lavel><input type="submit" value="確認訂單" style="font-size: 1rem; padding: 1rem 1rem;"></lavel>
+		<button><a href="/again" style="font-size: 1rem; padding: 1rem 1rem; color: black;
+		text-decoration: none;">修改</a></button>
+	</form>
+	</div>
+</body>
+</html>
